@@ -93,7 +93,7 @@ These rules collectively define how many points should be awarded to a receipt.
       "shortDescription": "Doritos Nacho Cheese",
       "price": "3.35"
     },{
-      "shortDescription": "   Klarbrunn 12-PK 12 FL OZ  ",
+      "shortDescription": "Klarbrunn 12-PK 12 FL OZ",
       "price": "12.00"
     }
   ],

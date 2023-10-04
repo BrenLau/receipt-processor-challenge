@@ -52,28 +52,34 @@ router.get('/receipts/:id/points', (req, res) => {
     if (receipt.total[receipt.total.length - 2] === '0' && receipt.total[receipt.total.length - 1] === '0') {
         points += 50
     }
+    console.log(points, 'total round')
     if (Number(receipt.total) % 0.25 === 0) {
         points += 25
     }
+    console.log(points, 'mult of .25')
 
     let items = receipt.items.length % 2 ? receipt.items.length - 1 : receipt.items.length
-    points += (items * 5)
+    points += ((items / 2) * 5)
+    console.log(points, 'items')
 
     for (let item of receipt.items) {
         let len = item.shortDescription.length % 3
         if (len === 0) {
-            points += Math.ceil(.2 * item.shortDescription.length)
+            points += Math.ceil(.2 * Number(item.price))
         }
     }
+    console.log(points, 'length')
 
     let day = receipt.purchaseDate.slice(receipt.purchaseDate.length - 2)
     if (Number(day) % 2 === 1) {
         points += 6
     }
+    console.log(points, 'date')
 
     if (receipt.purchaseTime > '14:00' && receipt.purchaseTime < '16:00') {
         points += 10
     }
+    console.log(points, 'times')
 
 
     res.json({ points })
